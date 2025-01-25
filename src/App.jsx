@@ -1,24 +1,44 @@
-import './App.css'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+
+/* PAGES */
 import Home from './pages/Home'
-// import RegisterPage from './components/RegisterPage'
-// import LoginPage from './components/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import LoginPage from './pages/LoginPage'
 import Cart from './pages/Cart'
 import Pizza from './pages/Pizza'
-import Footer from './components/Footer'
+import ProfilePage from './pages/ProfilePage'
+import NotFound from './pages/NotFound'
+
+/* COMPONENTES Routes & Route */
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="layout">
-      {/* SOLO SE MOSTRARÁN LOS COMPONENTES NAVBAR, HOME Y FOOTER */}
-      <Navbar />
-      <Home />
-      {/* <RegisterPage /> */}
-      {/* <LoginPage /> */}
-      {/* <Cart /> */}
-      {/* <Pizza /> */}
-      <Footer />
-    </div>
+    <section className="layout">
+      {/* SIEMPRE SE MOSTRARAN LOS COMPONENTES NAVBAR & FOOTER */}
+      {/* *** Navbar *** */}
+      <Navbar />      
+      {/* RUTAS */}
+      <Routes>
+        {/* *** Home *** */}
+        <Route path='/' element={<Home />} />
+        {/* *** RegisterPage *** */}
+        <Route path='/register' element={<RegisterPage />} />
+        {/* *** LoginPage *** */}
+        <Route path='/login' element={<LoginPage />} />
+        {/* *** Cart *** */}
+        <Route path='/cart' element={<Cart />} />
+        {/* *** Pizza *** */}
+        <Route path='/pizza' element={<Pizza />} />
+        {/* *** ProfilePage *** */}
+        <Route path='/profile' element={<ProfilePage /> } />
+        {/* *** NotFound *** */}
+        <Route path='*' element={<NotFound />} />
+      </Routes>    
+      {/* *** Footer *** */}
+      <Footer />      
+    </section>
   )
 }
 

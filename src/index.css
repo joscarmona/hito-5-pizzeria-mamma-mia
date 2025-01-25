@@ -239,6 +239,7 @@ body{
   color: #5c5f69;
 }
 
+/* ****** ERROR MESSAGE ****** */
 .errorMessage{
   color: #b83748;
   background-color: rgba(38, 60, 94, 0.5);
@@ -443,9 +444,41 @@ body{
 
 /* SE UTILIZA LA CLASE BUTTON-ADD-CARRO DEFINIDA EN PRECIO & BTNS DE VER MAS Y DE AGREGAR AL CARRO DE COMPRAS */
 
+/* SE UTILIZA LA errorMessage DEFINIDA EN ERROR MESSAGE */
+
 /* ******************************************************************* */
 /* ******************************************************************* */
 
+/* ****** NOTFOUND ****** */
+.notFoundContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.articleNotFound{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: #857e83;
+  padding: 2em;
+  border-radius: 10px;
+  color: #692246;
+}
+
+.h3NotFound{
+  font-size: xx-large;
+}
+
+.pNotFound{
+  color: #0f1b22;
+}
+
+/* ******************************************************************* */
+/* ******************************************************************* */
 
 /* ****** FOOTER ****** */
 .footer{

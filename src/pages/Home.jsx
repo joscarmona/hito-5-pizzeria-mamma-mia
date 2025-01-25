@@ -29,9 +29,9 @@ const getPizzas = async (setPizzas, setMyError) => {
     }
 }
 
-/************************************************************** */
+/* ************************************************************ */
 /* ************************ COMPONENTE ************************ */
-/************************************************************** */
+/* ************************************************************ */
 const Home = () => {
     /* GUARDAR LA CONSULTA REALIZADA LA API PIZZAS */
     const [pizzas,setPizzas] = useState([])
@@ -51,9 +51,8 @@ const Home = () => {
                 {/* {console.log("Componente HOME montado", pizzas)} */}
                 {/* SE RENDERIZA EL COMPONENTE CARDPIZZA */}
                 {myError ? <h3 className="errorMessage">Error: {myError}</h3> : pizzas.map((pizza) => <CardPizza key={pizza.id} producto = {pizza}/>)}
-                {
-                    // pizzas.map((pizza) => <CardPizza key={pizza.id} producto = {pizza}/>)
-                }    
+
+                {/* {pizzas.map((pizza) => <CardPizza key={pizza.id} producto = {pizza}/>)}     */}
 
                 {/* {myError && <h3 style={{color: "red"}}>Error: {myError}</h3>} */}
 
