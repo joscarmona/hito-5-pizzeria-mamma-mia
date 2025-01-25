@@ -1,10 +1,10 @@
 import './App.css'
 import Navbar from './components/Navbar'
-import Home from './components/Home'
+import Home from './pages/Home'
 // import RegisterPage from './components/RegisterPage'
 // import LoginPage from './components/LoginPage'
-import Cart from './components/Cart'
-import Pizza from './components/Pizza'
+import Cart from './pages/Cart'
+import Pizza from './pages/Pizza'
 import Footer from './components/Footer'
 
 function App() {
@@ -12,11 +12,11 @@ function App() {
     <div className="layout">
       {/* SOLO SE MOSTRARÁN LOS COMPONENTES NAVBAR, HOME Y FOOTER */}
       <Navbar />
-      {/* <Home /> */}
+      <Home />
       {/* <RegisterPage /> */}
       {/* <LoginPage /> */}
       {/* <Cart /> */}
-      <Pizza />
+      {/* <Pizza /> */}
       <Footer />
     </div>
   )
