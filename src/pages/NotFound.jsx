@@ -12,7 +12,7 @@ const NotFound = () => {
                 <p className="pNotFound">
                     Si desea continuar navegando en Pizzería Mamma Mía, por favor hacer click
                     {/* Link a Home, redirije a la ruta "/" */}
-                    <Link to={"/"} style={{textDecoration:"none"}}>
+                    <Link to="/" style={{textDecoration:"none"}}>
                         <b> aquí</b>
                     </Link>
                 </p>

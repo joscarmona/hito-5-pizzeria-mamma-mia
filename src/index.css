@@ -70,6 +70,7 @@ body{
   padding: 0.4em 0.8em;
   background-color: #1F1F1F;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .total-shopping-cart:hover{
