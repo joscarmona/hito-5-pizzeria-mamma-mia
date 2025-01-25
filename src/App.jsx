@@ -12,11 +12,11 @@ function App() {
     <div className="layout">
       {/* SOLO SE MOSTRARÁN LOS COMPONENTES NAVBAR, HOME Y FOOTER */}
       <Navbar />
-      <Home />
+      {/* <Home /> */}
       {/* <RegisterPage /> */}
       {/* <LoginPage /> */}
       {/* <Cart /> */}
-      {/* <Pizza /> */}
+      <Pizza />
       <Footer />
     </div>
   )

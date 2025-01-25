@@ -1,32 +1,51 @@
 import { useState, useEffect } from "react"
 
+
+/* PARA CONSULTAR A LA API POR PIZZAS POR LA INFORMACIÓN DE LA PIZZA */
+const getPizza = async (setPizza, setMyError) => {
+    try {
+        /* ENPOINT DE LA API PIZZAS */
+        const url = "http://localhost:5000/api/pizzas/p004"
+        const response = await fetch(url)
+        // console.log(response)
+        if (!response.ok) { // SE CONSULTA POR EL PROPIEDAD ok DE response
+            throw new Error(`Hubo un error en la consulta a la API - Status: ${response.status}`);
+            
+        }
+        // SI response.ok = true, PASA DEFINIR LO SIGUIENTE
+        const dataPizza = await response.json()
+        // console.log(dataPizzas)
+        if (dataPizza) {
+            setPizza(dataPizza)
+            setMyError("")
+        } else { // EN CASO QUE NO HAYA INFORMACION dataPizza
+            throw new Error("No data found in API response")                
+        }        
+    } catch (error) {
+        console.error("Error fetching data: ", error)
+        setMyError(error.message)   
+    }
+    
+}
+
 /************************************************************** */
 /* *********** COMPONENTE CART (CARRITO DE COMPRAS) *********** */
 /************************************************************** */
 const Pizza = () => {
     /* GUARDAR LA CONSULTA REALIZADA LA API DE PIZZAS POR LA INFORMACIÓN DE LA PIZZA*/
     const [pizza, setPizza] = useState({})
-
-    /* PARA CONSULTAR A LA API POR PIZZAS POR LA INFORMACIÓN DE LA PIZZA */
-    const getPizza = async () => {
-        /* ENPOINT DE LA API PIZZAS */
-        const url = "http://localhost:5000/api/pizzas/p001"
-        const response = await fetch(url)
-        const dataPizza = await response.json()
-        setPizza(dataPizza)
-    }
+    const [myError, setMyError] = useState("")
 
     /* useEffect, SE CONSULTA A LA API CUANDO EL COMPONENTE PIZZA SE MONTA EN App.jsx */
     useEffect(() => {
-        getPizza()
+        getPizza(setPizza, setMyError)
     }, [])
 
     const {img, name, desc, ingredients, price, id} = pizza
 
-
-
     return (
         <main className="main-section">
+            {myError ? <h3 className="errorMessage">Error: {myError}</h3> :
             <section className="cart-container">
                 {console.log("enpoint pizzas/p001", pizza)}
                 {/* INFROMACIÓN DE LA PIZZA */}
@@ -56,8 +75,7 @@ const Pizza = () => {
                 </div>
                 {/* BUTTON AÑADIR AL CARRITO */}
                 <button className="button-add-carro">Añadir &#128722;</button>
-
-            </section>
+            </section>}
         </main>
     )
 }
