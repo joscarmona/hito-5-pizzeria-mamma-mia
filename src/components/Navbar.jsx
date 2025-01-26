@@ -11,7 +11,7 @@ const Navbar = () => {
     // -- LOGIN Y REGISTER
     // TOKEN = TRUE, INDICA QUE USUARIO ESTÁ LOGUEADO Y SE DEBEN MOSTRAR LAS OPCIONES:
     // -- PROFILE Y LOGOUT
-    const token = true
+    const token = false
     return(
         <nav className="navbar">
             {/* NOMBRE DE LA PÁGINA WEB & LAS OPCIONES */}
@@ -29,11 +29,9 @@ const Navbar = () => {
             {/* PRECIO TOTAL DE LOS PRODUCTOS AGREGADOS AL CARRO */}
             {/* UTF-8 EMOJI SHOPPING CART: &#128722; */}
             {/* Link a Cart */}
-            <Link to="/cart" className="total-shopping-cart" >&#128722; Total: ${total.toLocaleString('es-CL')}</Link>
-            {/* <button className="total-shopping-cart">
-                &#128722; Total: ${total.toLocaleString('es-CL')}
-            </button> */}
-            {/* <p className="total-shopping-cart">&#128722; Total: ${total.toLocaleString('es-CL')}</p> */}
+            <Link to="/cart">
+                <button className="total-shopping-cart">&#128722; Total: ${total.toLocaleString('es-CL')}</button>
+            </Link>
         </nav>
     )
 }
@@ -48,7 +46,6 @@ const UsarioLogueado = () =>{
             {/* UTF-8 EMOJI OPEN LOCK: &#128275; */}
             {/* Link a Profile */}
             <Link to="/profile" className="link-opcion" >&#128275; Profile</Link>
-            {/* <a href="" className="link-opcion" >&#128275; Profile</a> */}
             {/* UTF-8 EMOJI LOCK: &#128274; */}
             <a href="" className="link-opcion" >&#128274; Logout</a>
         </>
@@ -62,11 +59,9 @@ const UsarioNoLogueado = () =>{
             {/* UTF-8 EMOJI LOCK WITH KEY: &#x1F355; */}
             {/* Link a LoginPage */}
             <Link to="/login" className="link-opcion">&#128272; Login</Link>
-            {/* <a href="" className="link-opcion" >&#128272; Login</a> */}
             {/* UTF-8 EMOJI LOCK WITH KEY: &#x1F355; */}
             {/* Link a RegisterPage */}
             <Link to="/register" className="link-opcion">&#128272; Register</Link>
-            {/* <a href="" className="link-opcion" >&#128272; Register</a> */}
         </>
     )
 }

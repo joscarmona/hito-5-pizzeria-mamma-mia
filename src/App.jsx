@@ -11,7 +11,7 @@ import ProfilePage from './pages/ProfilePage'
 import NotFound from './pages/NotFound'
 
 /* COMPONENTES Routes & Route */
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
@@ -30,11 +30,13 @@ function App() {
         {/* *** Cart *** */}
         <Route path='/cart' element={<Cart />} />
         {/* *** Pizza *** */}
-        <Route path='/pizza' element={<Pizza />} />
+        <Route path='/pizza/p001' element={<Pizza />} />
         {/* *** ProfilePage *** */}
         <Route path='/profile' element={<ProfilePage /> } />
         {/* *** NotFound *** */}
-        <Route path='*' element={<NotFound />} />
+        <Route path='/404' element={<NotFound />} />
+        {/* El componente Navigate permite redireccionar una ruta */}
+        <Route path='*' element={<Navigate to="/404" />} />
       </Routes>    
       {/* *** Footer *** */}
       <Footer />      

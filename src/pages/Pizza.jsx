@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 const getPizza = async (setPizza, setMyError) => {
     try {
         /* ENPOINT DE LA API PIZZAS */
-        const url = "http://localhost:5000/api/pizzas/p004"
+        const url = "http://localhost:5000/api/pizzas/p001"
         const response = await fetch(url)
         // console.log(response)
         if (!response.ok) { // SE CONSULTA POR EL PROPIEDAD ok DE response
