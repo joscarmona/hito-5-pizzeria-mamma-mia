@@ -1,6 +1,43 @@
 import { useState } from "react"
 import { pizzaCart } from "../pizzas"
 
+/* FUNCIÓN PARA CALCULAR EL TOTAL A PAGAR */
+const total = (accumulator, currentValue) => accumulator + currentValue.price * currentValue.count
+
+/* FUNCIÓN PARA DECREMENTAR CANTIDAD DE PIZZAS EN EL CARRITO */
+const decPizzaCount = (cart, setCart, pizza) => {
+    // Guarda el contenido actual que hay en el carrito de compras
+    const newCart = [...cart]
+
+    // Identifica el elemento pizza en el que se desea actualizar los valores de count & price
+    const index = newCart.findIndex((elePizza) => elePizza.id === pizza.id)
+
+    // Actualiza los valores de count & price en newCart
+    newCart[index].count--
+    // Si el valor de count es cero se elimina el elemento actual de newCart
+    newCart[index].count === 0 && newCart.splice(index, 1)
+    // newCart[index].price += pizza.price
+
+    // Actualiza estado de cart
+    setCart(newCart)
+}
+
+/* FUNCIÓN PARA AUMENTAR CANTIDAD DE PIZZAS EN EL CARRITO */
+const incPizzaCount = (cart, setCart, pizza) => {
+    // Guarda el contenido actual que hay en el carrito de compras
+    const newCart = [...cart]
+
+    // Identifica el elemento pizza en el que se desea actualizar los valores de count & price
+    const index = newCart.findIndex((elePizza) => elePizza.id === pizza.id)
+
+    // Actualiza los valores de count & price en newCart
+    newCart[index].count++
+    // newCart[index].price += pizza.price
+
+    // Actualiza estado de cart
+    setCart(newCart)
+}
+
 /************************************************************** */
 /* *********** COMPONENTE CART (CARRITO DE COMPRAS) *********** */
 /************************************************************** */
@@ -8,19 +45,33 @@ const Cart = () => {
     /* ESTADO PARA MANIPULAR EL ARREGLO DE PIZZAS EN EL CARRITO DE COMPRAS */
     const [cart, setCart] = useState(pizzaCart)
 
-    /* FUNCIÓN PARA CALCULAR EL TOTAL A PAGAR */
-    const total = (accumulator, currentValue) => accumulator + currentValue.price
-
-    /* FUNCIÓN PARA AUMENTAR CANTIDAD DE PIZZAS EN EL CARRITO */
-    const agregarPizza = (pizza) => {
-        const newCart = cart.map((pizzaa) => {
-            if (pizzaa.name === pizza.name) {
-                pizza.count += 1;
-                pizza.price += pizza.price
-            }
-        })
-
-        //setCart(newCart)
+    {/* RENDERIZAR LA INFORMACIÓN DE CADA PIZZA QUE SE ENCUENTRA EN EL CARRITO DE COMPRAS */}
+    const renderPizzaInCart = (pizza) => {
+        /* Desestructuración de pizza*/
+        const {id, name, price, count, img} = pizza
+        return <li key={id} className="cart-pizza">
+            {/* IMAGEN DE LA PIZZA Y NOMBRE */}
+            <article className="pizza-img-name-container">
+                {/* IMAGEN DE LA PIZZA */}
+                <img src={img} alt= {"Pizza " + name} className="cart-pizza-image"/>
+                {/* NOMBRE DE LA PIZZA */}
+                <p>{"Pizza " + name}</p>
+            </article>
+            {/* PRECIO - BOTONES DE INC & DEC - CANTIDAD DE PIZZAS EN EL CARRITO */}
+            <article className="pizza-price-count-container">
+                {/* PRECIO DE LA PIZZA */}
+                <p>{"$" + price.toLocaleString('es-CL')}</p>
+                {/* <p>{"$" + pizzaPrice.toLocaleString('es-CL')}</p> */}
+                {/* BOTÓN DE DECREMENTAR, PERMITE DISMINUIR LA CANTIDAD DE PIZZAS EN EL CARRITO Y SI LA CANTIDAD ES CERO ELIMINA LA PIZZA DEL CARRITO */}
+                <button className="dec-button" onClick={() => decPizzaCount(cart, setCart, pizza)}>-</button>
+                {/* MUESTRA LA CANTIDAD DE PIZZAS EN EL CARRITO */}
+                {/* <p>{count}</p> */}
+                {}
+                <p>{count}</p>
+                {/* BOTÓN DE INCREMENTAR, PERMITE AUMENTAR LA CANTIDAD DE PIZZAS EN EL CARRITO */}
+                <button className="inc-button" onClick={() => incPizzaCount(cart, setCart, pizza)}>+</button>
+            </article>
+        </li>
     }
 
     return (
@@ -30,26 +81,10 @@ const Cart = () => {
                 {/* PRODUCTOS A COMPRAR */}
                 <ul className="products-to-buy">
                     {/* SE RENDERIZA LA INFORMACIÓN DE CADA PIZZA QUE SE ENCUENTRA EN EL CARRITO DE COMPRAS */}
-                    {cart.map((pizza) => <li key={pizza.id} className="cart-pizza">
-                        {/* IMAGEN DE LA PIZZA Y NOMBRE */}
-                        <article className="pizza-img-name-container">
-                            {/* IMAGEN DE LA PIZZA */}
-                            <img src={pizza.img} alt= {"Pizza " + pizza.name} className="cart-pizza-image"/>
-                            {/* NOMBRE DE LA PIZZA */}
-                            <p>{pizza.name}</p>
-                        </article>
-                        {/* PRECIO - BOTONES DE INC & DEC - CANTIDAD DE PIZZAS EN EL CARRITO */}
-                        <article className="pizza-price-count-container">
-                            {/* PRECIO DE LA PIZZA */}
-                            <p>{"$" + pizza.price.toLocaleString('es-CL')}</p>
-                            {/* BOTÓN DE DECREMENTAR, PERMITE DISMINUIR LA CANTIDAD DE PIZZAS EN EL CARRITO Y SI LA CANTIDAD ES CERO ELIMINA LA PIZZA DEL CARRITO */}
-                            <button className="dec-button">-</button>
-                            {/* MUESTRA LA CANTIDAD DE PIZZAS EN EL CARRITO */}
-                            <p>{pizza.count}</p>
-                            {/* BOTÓN DE INCREMENTAR, PERMITE AUMENTAR LA CANTIDAD DE PIZZAS EN EL CARRITO */}
-                            <button className="inc-button" onClick={() => agregarPizza(pizza)}>+</button>
-                        </article>
-                    </li>)}
+                    {cart.map(renderPizzaInCart)}
+                    {/* ************************************ */}
+                    
+                    {/* ************************************ */}
                 </ul>
                 {/* TOTAL A PAGAR */}
                 <h2>
@@ -60,7 +95,7 @@ const Cart = () => {
                     }
                 </h2>
                 {/* IR A PAGAR */}
-                <button className="button-add-carro">Pagar</button>
+                <button className="button-añadir-carro">Pagar</button>
 
             </section>
         </main>
